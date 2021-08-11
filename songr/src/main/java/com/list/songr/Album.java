@@ -1,5 +1,7 @@
 package com.list.songr;
 import javax.persistence.*;
+import java.util.List;
+
 @Entity
 //@Table(name = "albums")
 public class Album {
@@ -11,10 +13,14 @@ public class Album {
     private int songCount;
     private int length;
     private String imageUrl;
+@OneToMany(mappedBy = "albumSonger")
+    private List<Songr>songr;
 
     public Album(){
 
     }
+
+
 
     public Album(String title, String artist, int songCount, int length, String imageUrl) {
         this.title = title;
@@ -25,6 +31,13 @@ public class Album {
     }
 
 
+    public List<Songr> getSongr() {
+        return songr;
+    }
+
+    public void setSongr(List<Songr> songr) {
+        this.songr = songr;
+    }
 
     public int getId() {
         return id;

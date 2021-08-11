@@ -43,6 +43,7 @@ public class SongerController {
     albumRepository.save(album);
         return new RedirectView("/albums");
    }
+
 //    @GetMapping("/addAlbum")
 //    public String addAlbum(Model model){
 //    model.addAttribute("get",new Album());
@@ -54,5 +55,5 @@ public class SongerController {
 //        model.addAttribute("songs",album);
 //        return "albums";
 //    }
-//
+
 }
