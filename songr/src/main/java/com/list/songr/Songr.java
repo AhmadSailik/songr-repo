@@ -13,7 +13,7 @@ public class Songr {
   private int trackNumber;
   private String albumName;
 @ManyToOne
-private Album albumSonger;
+public Album albumSonger;
 
 public Songr(){
 

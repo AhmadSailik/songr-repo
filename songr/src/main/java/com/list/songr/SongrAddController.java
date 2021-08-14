@@ -16,24 +16,34 @@ public class SongrAddController {
     SongrRepository songrRepository;
     @Autowired
     AlbumRepository albumRepository;
-    @GetMapping("/addSongrs")
+    @GetMapping("/")
     public String getAlbums(Model model){
-        Iterable iterable;
-
         model.addAttribute("songs",songrRepository.findAll());
+        model.addAttribute("select",songrRepository.findAll());
+        return "songr.html";
+    }
+    @RequestMapping("/filterSong")
+    @GetMapping("/filterSong")
+    public String showAlbums(Model model,int albumNum){
+          if(albumNum==0){
+              model.addAttribute("songs",songrRepository.findAll());
+          }else {
+              Iterable findAllByalbumSongerId=songrRepository.findAllByalbumSongerId(albumNum);
+              model.addAttribute("songs",findAllByalbumSongerId);
+          }
+        model.addAttribute("select",songrRepository.findAll());
+
         return "songr.html";
     }
 
     @RequestMapping("/addSongr")
     @PostMapping("/addSongr")
-    public RedirectView addSong(String title, int length, int trackNumber,Integer albumNum, Model model){
+    public RedirectView addSong(String title, int length, int trackNumber,int albumNum){
         Album albumSonger=albumRepository.findById(albumNum).get();
         String albumName=albumSonger.getTitle();
         Songr songr=new Songr(title,length,trackNumber,albumName,albumSonger);
         songrRepository.save(songr);
-
-//        model.addAttribute("songrShow",songrRepository.findAll());
-        return new RedirectView("/addSongrs");
+        return new RedirectView("/");
     }
 }
 

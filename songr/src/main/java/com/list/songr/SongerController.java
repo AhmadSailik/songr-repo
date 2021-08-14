@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class SongerController {
     @Autowired
     AlbumRepository albumRepository;
-    @GetMapping("/")
+    @GetMapping("/bbb")
     public String home(){
         return "home.html";
     }
@@ -44,16 +44,6 @@ public class SongerController {
         return new RedirectView("/albums");
    }
 
-//    @GetMapping("/addAlbum")
-//    public String addAlbum(Model model){
-//    model.addAttribute("get",new Album());
-//        return "userInput";
-//    }
-////    @RequestMapping("/addAlbum")
-//    @PostMapping("/addAlbum")
-//    public String addAlbums(@ModelAttribute Album album,Model model){
-//        model.addAttribute("songs",album);
-//        return "albums";
-//    }
+
 
 }
